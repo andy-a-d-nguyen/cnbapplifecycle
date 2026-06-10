@@ -23,19 +23,10 @@ jobs:
       - name: Install dependencies
         run: |
           mkdir -p $HOME/.local/bin && echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-          curl -L https://kind.sigs.k8s.io/dl/v${KIND_VERSION}/kind-linux-amd64 -o $HOME/.local/bin/kind
-          chmod +x $HOME/.local/bin/kind
-          curl -L https://github.com/helmfile/helmfile/releases/download/v${HELMFILE_VERSION}/helmfile_${HELMFILE_VERSION}_linux_amd64.tar.gz | tar -zx
-          mv helmfile $HOME/.local/bin/helmfile
           curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=${CF_CLI_VERSION}&source=github" | tar -zx
           mv cf8 $HOME/.local/bin/cf
-          curl -L "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" -o $HOME/.local/bin/kubectl
-          chmod +x $HOME/.local/bin/kubectl
         env:
-          CF_CLI_VERSION: "8.18.0"
-          KIND_VERSION: "0.31.0"
-          HELMFILE_VERSION: "1.4.3"
-          KUBECTL_VERSION: "1.28.0"
+          CF_CLI_VERSION: "8.18.3"
       - name: setup Go
         uses: actions/setup-go@v6
         with:
